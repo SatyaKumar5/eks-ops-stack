@@ -40,29 +40,14 @@ locals {
   existing_public_subnet_ids = ["subnet-07be1d69595fa9258"]
 
   provision_public_subnets             = false
-  provision_dmz_subnets                = false
   provision_control_plane_subnets      = false
-  provision_db_subnets                 = false
-  provision_proxy_subnets              = false
-  provision_redis_subnets              = false
-  provision_management_subnets         = false
   provision_worker_nodes_one_subnets   = false
-  provision_worker_nodes_two_subnets   = false
-  provision_worker_nodes_three_subnets = true // NLBZoneX
-  provision_worker_nodes_four_subnets  = true // InternalLBZoneX
-  provision_worker_nodes_five_subnets  = false // SquidLBZoneX
-  provision_app_zone_subnets           = false
-  provision_ec_app_zone_subnets        = false
-  provision_locker_app_zone_subnets    = false
+
 
 
   # USE DATA TO IMPORT THE ROUTE TABLE ID
-  // PubliSubnetZoneX
-  #public_subnet_ids = ["subnet-03b2095a4cb7fb5f2", "subnet-018838caecff2025d", "subnet-09f7110ec635b5263"]
   // EKSControlPlaneSubnetZoneX
   control_plane_subnet_ids = ["subnet-0bbbc646a2edf932e", "subnet-0b66f353bc78e139c"]
-  // ManagementSubnetZoneX
-  #management_subnet_ids = ["subnet-00fae7be5c5ae7a40", "subnet-04ab0be5646b2e671", "subnet-0a51ab247b3553053"]
   // EKSWorker1SubnetZoneX
   worker_nodes_one_subnet_ids = ["subnet-0bbbc646a2edf932e", "subnet-0b66f353bc78e139c"]
 
@@ -81,53 +66,8 @@ locals {
   worker_nodes_one_route_table_name   = "EKSWorker1SubnetRouteTable"
   ///////
 
-
-  /* NAT & IGW CONFIG STARTS */
-  // Note: If you need NAT, IGW, put true, else false
-  provision_nat_gateways     = false
-  provision_internet_gateway = false
-
-  // Toggle to associate Internet Gateways
-  associate_igw_with_public_subnets = false
-  associate_igw_with_dmz_subnets    = false
-
-  ////// check the logic for the DMZ and public at last
-
-  // Toggle to associate NAT Gateways
-  associate_nat_with_dmz_subnets                = false
-
-  associate_nat_with_proxy_subnets              = true 
-  associate_nat_with_management_subnets         = false  
+  // Toggle to associate NAT Gateways 
   associate_nat_with_worker_nodes_one_subnets   = false
-  associate_nat_with_worker_nodes_two_subnets   = false
-  associate_nat_with_worker_nodes_three_subnets = true
-  associate_nat_with_worker_nodes_four_subnets  = false
-  associate_nat_with_worker_nodes_five_subnets  = false
-  associate_nat_with_app_zone_subnets           = false  
-  /* NAT & IGW CONFIG ENDS */
-
-
-  /* VPC ENDPOINTS CONFIG STARTS */
-  // If you need put true, else false
-  provision_endpoint_ecrdkr = true
-  provision_endpoint_ec2    = true
-  provision_endpoint_logs   = true
-  provision_endpoint_sts    = true
-  provision_endpoint_elb    = true
-  provision_endpoint_asg    = true
-  provision_endpoint_ecrapi = true
-  provision_endpoint_kms    = true
-  provision_endpoint_s3     = true
-  /* VPC ENDPOINTS CONFIG ENDS */
-
-
-
-
-  /* KMS CONFIG STARTS */
-  // Add the arns of users to whom you want to give permissions for KMS keys
-  //kms_key_allowed_arns = ["arn:aws:iam::480155254183:user/aman.seth_juspay", "arn:aws:iam::480155254183:user/sankalp.saexena_juspay", "arn:aws:iam::480155254183:user/satya.kumar_juspay", "arn:aws:iam::480155254183:user/saumitra.yadav_juspay"]
-  allowed_users = ["aman.seth", "sankalp.saxena", "satya.kumar"]
-  /* KMS CONFIG ENDS */
 
 
   /* JUMP BOX CONFIG STARTS */
