@@ -210,24 +210,6 @@ module "security-group" {
 
  //-------- Security group configuration for EKS WORKER LT NODES Ends -------------------------
 
-  vpce_sg_name        = "${local.resource_prefix}-vpce-sg"
-  vpce_sg_description = "Security Group for VPCE"
-  vpce_sg_tags = {
-    Name = "${local.resource_prefix} Stack VPCE SG"
-  }
-  vpce_cidr_ingress_rules = [
-    {
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      cidr_blocks = "${local.provision_vpc}" == true ? ["${local.vpc_cidr_base}${local.vpc_end_cidr}"] : ["${local.existing_vpc_complete_cidr}"]
-      description = "Allows all the resources to talk to VPCE"
-    },
-  ]
-  vpce_ingress_rules = [  ]
-  vpce_egress_rules = [  ]
-}
-
 module "jump-box" {
   source                      = "./../jump-box"
   resource_prefix             = local.resource_prefix
