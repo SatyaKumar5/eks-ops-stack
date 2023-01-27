@@ -61,3 +61,7 @@ This project contains the following modules:
 - The "jump-box" module creates a jump box, which is used to access the EKS cluster.
 - The "Opsfleet-stack" is the main module of the project, and includes the backend, data, key-pairs, locals, and variables that are used to configure the EKS cluster.
 - The "remote-state", "s3", "security-group", "subnets", and "vpc" modules are used to create other infrastructure components such as remote state, S3 bucket, security group, subnets and VPC required for EKS.
+
+## Screenshots
+![image](https://user-images.githubusercontent.com/43503036/215183877-80784918-37c2-4570-a869-aba8aa9cd320.png)
+
